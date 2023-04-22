@@ -12,7 +12,7 @@ const io = require("socket.io")(server,{
     origins: "*:*",
     methods: ["GET", "POST"]
   }
-}).listen(443);
+})
 io.on('connection', (socket) => {
   socket.on('disconnect', () => console.log('Client disconnected'));
   socket.on('messaged', (args) => {
@@ -47,16 +47,6 @@ app.get('/', function(req, res, next) {
 
 app.listen(porta, () => {
   console.log(`Example app listening on port ${porta}`)
-})
-
-const WebSocket = require('ws')
-const PORT = process.env.PORT || 3000;
-const wss = new WebSocket.Server({ port: PORT })
-wss.on('connection', ws => {
-  ws.on('message', message => {
-    console.log(`Received message => ${message}`)
-  })
-  ws.send('Hello! Message From Server!!')
 })
 
 /*
