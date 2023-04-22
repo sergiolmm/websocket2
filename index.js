@@ -26,7 +26,7 @@ io.on('connection', (socket) => {
   });
 });
 
-
+*/
 
 const express = require('express')
 const app = express()
@@ -43,7 +43,18 @@ app.get('/', function(req, res, next) {
 app.listen(porta, () => {
   console.log(`Example app listening on port ${porta}`)
 })
-*/
+
+const WebSocket = require('ws')
+const PORT = process.env.PORT || 3000;
+const wss = new WebSocket.Server({ port: PORT })
+wss.on('connection', ws => {
+  ws.on('message', message => {
+    console.log(`Received message => ${message}`)
+  })
+  ws.send('Hello! Message From Server!!')
+})
+
+/*
 
 const express = require('express')
 
@@ -108,3 +119,15 @@ server.listen(port);
  }
 }
 )
+/*
+const WebSocket = require('ws')
+const PORT = process.env.PORT || 3000;
+const wss = new WebSocket.Server({ port: PORT })
+wss.on('connection', ws => {
+  ws.on('message', message => {
+    console.log(`Received message => ${message}`)
+  })
+  ws.send('Hello! Message From Server!!')
+})
+
+*/ 
