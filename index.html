@@ -1,0 +1,34 @@
+<html>
+  <head>
+    <script src="/socket.io/socket.io.js"></script>
+  </head>
+  <body>
+     <p id="native-socket-data"></p>
+     <p id="Esp-data"></p>
+     <h1>testewe</h1>
+  </body>
+
+  <script>
+    let count =0 
+     var socket = io.connect('https://dark-calf-garment.cyclic.app:443/', {secure: false, port: '443'});//io({transports: ['websocket']});
+
+      let el;
+      let le;
+    
+      setInterval(() => {
+        count++
+        socket.emit('messaged',count)
+    
+      }, 1000);
+    
+      socket.on('message', (timeString) => {
+        el = document.getElementById('native-socket-data');
+        el.innerHTML = 'Message ' + timeString;
+      });
+      
+      socket.on('message2', (timeString) => {
+        le = document.getElementById('Esp-data');
+        le.innerHTML = 'Temp From Esp ----------------- ' + timeString[1]["data"] +"°";
+      });
+    </script>
+</html>
