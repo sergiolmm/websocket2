@@ -36,6 +36,11 @@ app.get('/oi', (req, res) => {
   res.send('Hello World!')
 })
 
+app.get('/oi2', (req, res) => {
+  res.sendFile('/websocket-client.html', { root: __dirname })
+})
+
+
 app.get('/', function(req, res, next) {
   res.json({message: 'alive'});
 });
