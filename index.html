@@ -21,7 +21,7 @@
     
       socket.on('message', (timeString) => {
         el = document.getElementById('native-socket-data');
-        el.innerHTML = 'Message ' + timeString;
+        el.innerHTML = 'Message numero :' + timeString;
       });
       
       socket.on('message2', (timeString) => {
